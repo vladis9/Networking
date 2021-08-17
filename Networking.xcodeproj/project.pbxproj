@@ -17,6 +17,7 @@
 		F5A0F62126C7B751007AF2BF /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0F62026C7B751007AF2BF /* CoursesViewController.swift */; };
 		F5A0F62C26C7C1C1007AF2BF /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0F62B26C7C1C1007AF2BF /* CourseCell.swift */; };
 		F5A0F62F26C7C2E4007AF2BF /* UserActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0F62E26C7C2E4007AF2BF /* UserActionCell.swift */; };
+		F5F1230826CA4E2A00499FED /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F1230726CA4E2A00499FED /* Course.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		F5A0F62026C7B751007AF2BF /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		F5A0F62B26C7C1C1007AF2BF /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		F5A0F62E26C7C2E4007AF2BF /* UserActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActionCell.swift; sourceTree = "<group>"; };
+		F5F1230726CA4E2A00499FED /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				F59ABE9626AEF509004190BF /* AppDelegate.swift */,
 				F59ABE9826AEF509004190BF /* SceneDelegate.swift */,
 				F59ABE9C26AEF509004190BF /* Main.storyboard */,
+				F5F1230726CA4E2A00499FED /* Course.swift */,
 				F5A0F62E26C7C2E4007AF2BF /* UserActionCell.swift */,
 				F5A0F61D26C7B63C007AF2BF /* MainViewController.swift */,
 				F5A0F62026C7B751007AF2BF /* CoursesViewController.swift */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5F1230826CA4E2A00499FED /* Course.swift in Sources */,
 				F5A0F62C26C7C1C1007AF2BF /* CourseCell.swift in Sources */,
 				F5A0F62F26C7C2E4007AF2BF /* UserActionCell.swift in Sources */,
 				F59ABE9726AEF509004190BF /* AppDelegate.swift in Sources */,
