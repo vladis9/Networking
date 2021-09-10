@@ -204,6 +204,8 @@
                         <segue destination="uUu-a4-CUo" kind="show" identifier="ExampleThree" id="64Y-ls-LYX"/>
                         <segue destination="uUu-a4-CUo" kind="show" identifier="ExampleFour" id="lE0-Fs-SCa"/>
                         <segue destination="uUu-a4-CUo" kind="show" identifier="OurCourses" id="Sza-TE-AUu"/>
+                        <segue destination="uUu-a4-CUo" kind="show" identifier="OurCoursesWithAlamofire" id="bsk-HK-SGH"/>
+                        <segue destination="uUu-a4-CUo" kind="show" identifier="PostAlamofire" id="nvC-e1-tIC"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BqS-Hl-Z0U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -212,7 +214,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Sza-TE-AUu"/>
+        <segue reference="nvC-e1-tIC"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="scrollViewTexturedBackgroundColor">

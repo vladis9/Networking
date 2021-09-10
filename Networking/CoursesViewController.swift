@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class CoursesViewController: UITableViewController {
      
@@ -106,7 +107,7 @@ class CoursesViewController: UITableViewController {
     }
     
     func fetchData() {
-        guard let url = URL(string: jsonUrlTwo) else { return }
+        guard let url = URL(string: jsonUrlFive) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             
@@ -114,12 +115,62 @@ class CoursesViewController: UITableViewController {
             
             do {
                 let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
+//                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 self.courses = try decoder.decode([Course].self, from: data)
             } catch let error {
                 print(error)
             }
         }.resume()
+    }
+    
+    func fetchDataWithAlamofire() {
+        guard let url = URL(string: jsonUrlTwo) else { return }
+        
+        
+        AF.request(url).validate().responseJSON { dataResponse in
+            
+            switch dataResponse.result {
+            case .success(let value):
+                self.courses = Course.getCourses(from: value)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func postWithAlamofire() {
+        
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
+        
+        let userData: [String: Any] = [
+            "name": "Network Requests",
+            "link": "https://swiftbook.ru/contents/our-first-applications/",
+            "imageUrl": "https://swiftbook.ru/wp-content/uploads/2018/03/2-courselogo.jpg",
+            "numberOfLessons": "28",
+            "numberOfTests": "15"
+        ]
+        
+        AF.request(url, method: .post, parameters: userData).validate().responseJSON { responseData in
+            
+            
+            switch responseData.result {
+            case .success(let value):
+                
+                guard let jsonData = value as? [String: Any] else { return }
+                
+                let course = Course(dictCourse: jsonData)
+                
+                self.courses.append(course)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
 }

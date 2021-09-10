@@ -14,6 +14,9 @@ enum UserActions: String, CaseIterable {
     case exampleThree = "Example Three"
     case exampleFour = "Example Four"
     case ourCourses = "Our Courses"
+    case postRequest = "Post Request"
+    case ourCoursesAlamofire = "Our Courses Alamofire"
+    case postAlamofire = "POST Alamofire"
 }
 
 class MainViewController: UICollectionViewController {
@@ -52,6 +55,12 @@ class MainViewController: UICollectionViewController {
             performSegue(withIdentifier: "ExampleFour", sender: self)
         case .ourCourses:
             performSegue(withIdentifier: "OurCourses", sender: self)
+        case .postRequest:
+            postRequest()
+        case .ourCoursesAlamofire:
+            performSegue(withIdentifier: "OurCoursesWithAlamofire", sender: self)
+        case .postAlamofire:
+            performSegue(withIdentifier: "PostAlamofire", sender: self)
         }
     }
     
@@ -72,6 +81,10 @@ class MainViewController: UICollectionViewController {
                 courseVC.fetchDataV4()
             case "OurCourses":
                 courseVC.fetchData()
+            case "OurCoursesWithAlamofire":
+                courseVC.fetchDataWithAlamofire()
+            case "PostAlamofire":
+                courseVC.postWithAlamofire()
             default:
                 break
             }
@@ -85,5 +98,35 @@ class MainViewController: UICollectionViewController {
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: UIScreen.main.bounds.width - 32, height: 100)
+    }
+}
+
+extension MainViewController {
+    private func postRequest() {
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/posts") else { return }
+        
+        let userData = [
+            "course": "Networking",
+            "lesson": "GET and POST"
+        ]
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: userData, options: []) else { return }
+        request.httpBody = httpBody
+        
+        URLSession.shared.dataTask(with: request) { (data, response, _) in
+            guard let response = response, let data = data else { return }
+            print(response)
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                print(json)
+            } catch let error {
+                print(error)
+            }
+        }.resume()
     }
 }
